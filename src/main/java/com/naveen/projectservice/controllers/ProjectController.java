@@ -36,8 +36,27 @@ public class ProjectController {
 	 
 	 @GetMapping("/projectsOf")
 	 public List<Project> getProjectsFromAParticularPage(@RequestParam int pageNo, @RequestParam int size){
-		 
+		   
 		 return projectService.getProjectsOfAPage(pageNo, size);
 		 
 	 }
+	 
+	 @GetMapping("/projectsInOrder")
+	 public List<Project> sortProjects(@RequestParam String by, @RequestParam String type){
+		   
+		 return projectService.sortByAnOrderAndType(by, type);
+		 
+	 }
 }
+
+
+
+
+
+
+
+
+
+
+
+

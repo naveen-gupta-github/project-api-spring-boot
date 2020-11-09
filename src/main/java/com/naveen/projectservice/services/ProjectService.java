@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.naveen.projectservice.models.Project;
@@ -19,8 +20,10 @@ public class ProjectService {
 	
 	@Autowired
 	ProjectRepo projectRepo;
+	
 	@Autowired
 	ProjectRepoPaging projectRepoPaging;
+	
 	public Project createProject(Project project)
 	{
 		
@@ -43,5 +46,28 @@ public class ProjectService {
 		return pagedResult.getContent();
 		
 	}
+	
+	public List<Project> sortByAnOrderAndType(String sortBy, String order){
+	
+	 Sort sortOrder = null;
+	 
+	 if (order.equalsIgnoreCase("ascending"))
+	      sortOrder = Sort.by(sortBy).ascending();
+	 else
+		sortOrder = Sort.by(sortBy).descending();
+	 
+	 return (List<Project>) projectRepoPaging.findAll(sortOrder);
+		
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
