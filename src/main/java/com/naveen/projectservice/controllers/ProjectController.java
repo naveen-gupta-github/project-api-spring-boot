@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.naveen.projectservice.models.Project;
@@ -31,5 +32,12 @@ public class ProjectController {
 		 
 		return  projectService.getProjects();
 		
+	 }
+	 
+	 @GetMapping("/projectsOf")
+	 public List<Project> getProjectsFromAParticularPage(@RequestParam int pageNo, @RequestParam int size){
+		 
+		 return projectService.getProjectsOfAPage(pageNo, size);
+		 
 	 }
 }
