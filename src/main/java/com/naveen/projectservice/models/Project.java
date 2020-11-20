@@ -8,7 +8,7 @@ import javax.persistence.Id;
 public class Project {
 
 	@Id
-	@GeneratedValue
+	//@GeneratedValue
 	private Integer pnumber;
 	private String pname;
 	private String plocation;

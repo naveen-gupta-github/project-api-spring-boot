@@ -3,6 +3,7 @@ package com.naveen.projectservice.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,7 @@ public class ProjectController {
 	 ProjectService projectService;
 	 
 	 @PostMapping("/projects")
+	 @PreAuthorize("hasAuthority('create_profile')")
 	 public Project saveProject(@RequestBody Project project) {
 		 
 	  Project savedProject = projectService.createProject(project);
@@ -28,6 +30,7 @@ public class ProjectController {
 	 }
 	 
 	 @GetMapping("/projects")
+	 @PreAuthorize("hasRole('ROLE_operator')")
 	 public List<Project> getAllProjects() {
 		 
 		return  projectService.getProjects();
